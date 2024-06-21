@@ -32,14 +32,26 @@ The code has two aspects:
 
 ![img_1.png](images/img_1.png)
 
-We can then, from a list of Strings (Logs for example), have a poorly formatted String:
+We can then, from a list of Strings (Logs for example), have a poorly formatted Strings:
 
 ![img_2.png](images/img_2.png)
 
+This code has more logical complexity:
+
+![img.png](images/repl_value.png)
+
+It works with flags:
+
+- **flag_aspas**: Controls if the content is a string content between ''. It's important to find the attribute name ou if the attribute is part of a String content.
+- **flag_attribute**: It marks that an attribute was found
+- **flag_dois_pontos**: It marks that the algorithm is prepared to find the content of an attribute (the content is after the :)
+
+>**Note**: The attribute to be redacted NEED to be a String. If the attribute is a set of attributes, the algorithm will ignore all the set. In the example code **redact.py**, the attribute **items** is in the list but it will not redact anything.
+
 What the algorithm performs:
 
-- The algorithm looks for REGEX patterns, therefore, no matter the name of the attribute or if there is an attribute associated with the name (in a JSON structure), the algorithm will always replace the value with **<REDACTED>**.
-- The algorithm searches for the attribute name in the list (ATTRIBUTE_PATTERNS). This needs to be in the format:
+- The algorithm looks for **REGEX** patterns, therefore, no matter the name of the attribute or if there is an attribute associated with the name (in a JSON structure), the algorithm will always replace the value with **<REDACTED>**.
+- The algorithm searches for the attribute name in the list (**ATTRIBUTE_PATTERNS**). This needs to be in the format:
 
 
     '<name>': '<value>'
