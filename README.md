@@ -54,11 +54,14 @@ What the algorithm performs:
 - The algorithm searches for the attribute name in the list (**ATTRIBUTE_PATTERNS**). This needs to be in the format:
 
 
-    'name': 'value'
+    'name': 'value' 
+    
     'name' is the attribute name
+    
     : need to respect a JSON association
-    'value' is the value between '', yes the value needs to be a String
-
+    
+    'value' is the value between '', yes the value needs to be a String 
+    
 
 So you can use the class **Redaction.py** in you code, like this:
 
