@@ -59,6 +59,7 @@ What the algorithm performs:
     : need to respect a JSON association
     'value' is the value between '', yes the value needs to be a String
 
+
 So you can use the class **Redaction.py** in you code, like this:
 
 ![img_3.png](images/img_3.png)
