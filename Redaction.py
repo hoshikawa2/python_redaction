@@ -27,11 +27,12 @@ import re
 
 class Redaction():
 
-    def repl_value(self, message, pattern, r):
+    def repl_value(self, message, pattern):
         flag_aspas = False
         flag_attribute = False
         # flag_vezes = 0
         flag_dois_pontos = False
+        flag_colchetes = False
         i = 0
         z = pattern
         str_acc = ""
@@ -51,14 +52,24 @@ class Redaction():
                 flag_attribute = False
                 flag_dois_pontos = False
                 flag_aspas = False
-            if ((message[i] == "}" or message[i] == "]" or message[i] == ",") and flag_dois_pontos and not flag_aspas and flag_attribute):
+                flag_colchetes = False
+            if ((message[i] == "}" or message[i] == "]") and not flag_aspas):
                 flag_attribute = False
                 flag_dois_pontos = False
                 flag_aspas = False
+                flag_colchetes = False
+                str_acc = ""
+            if (flag_dois_pontos and not flag_aspas and message[i] == "["):
+                flag_colchetes = True
+            if (message[i] == "," and not flag_aspas and not flag_colchetes):
+                flag_attribute = False
+                flag_dois_pontos = False
+                flag_aspas = False
+                flag_colchetes = False
                 str_acc = ""
             if ((message[i] == "'" or message[i] == "\"")):
                 flag_aspas = not flag_aspas
-            if (flag_aspas == False and flag_attribute == True and flag_dois_pontos and len(str_acc) > 0):
+            if (flag_aspas == False and flag_attribute == True and flag_dois_pontos and len(str_acc) > 0 and not flag_colchetes):
                 flag_attribute = False
                 flag_dois_pontos = False
                 str_acc = ""
@@ -68,12 +79,7 @@ class Redaction():
     def repl(self, attribute_pattern, message):
         msg_return = []
         for pattern in attribute_pattern:
-            x = re.finditer(pattern, message)
-            for y in x:
-                msg_aux1 = []
-                for reg in y.regs:
-                    for r in reg:
-                        message = self.repl_value(message, pattern, r)
+            message = self.repl_value(message, pattern)
         return message
 
     def change(self, sensitive_pattern, message):

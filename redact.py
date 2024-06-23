@@ -11,6 +11,7 @@ SENSITIVE_PATTERNS = [
 
 ATTRIBUTE_PATTERNS = [
     "nome",
+    "$ref",
     "cpf",
     "teste",
     "valor",
@@ -21,7 +22,8 @@ ATTRIBUTE_PATTERNS = [
     "chave",
     "description",
     "items",
-    "example"
+    "example",
+    "required"
 ]
 
 Messages = [
@@ -34,7 +36,8 @@ Messages = [
     "User's phone number: (123) 456-7890",
     "User's date of birth: 04/29/1990",
     "User's IP address: 192.168.1.1",
-    "User's API key: a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6"
+    "User's API key: a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
+    '{    "nome": "João Silva",    "cpf": "123.456.789-00",    "teste": "Teste Valor",    "valor": 200.00,    "original": "Original Valor",    "type": "Tipo Valor",    "solicitacaoPagador": "Solicitação Pagador",    "expiracao": "2021-12-31",    "chave": "Chave Valor",    "description": "Descrição Valor",    "items": ["Item1", "Item2"],    "example": "Exemplo Valor"}'
 ]
 
 redaction = Redaction.Redaction()
