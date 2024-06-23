@@ -38,13 +38,14 @@ We can then, from a list of Strings (Logs for example), have a poorly formatted 
 
 This code has more logical complexity:
 
-![img.png](images/repl_value.png)
+![img.png](images/repl_value1.png)
 
 It works with flags:
 
 - **flag_aspas**: Controls if the content is a string content between ''. It's important to find the attribute name ou if the attribute is part of a String content.
 - **flag_attribute**: It marks that an attribute was found
 - **flag_dois_pontos**: It marks that the algorithm is prepared to find the content of an attribute (the content is after the :)
+- **flag_colchetes**: It marks that an attribute items values will be analyzed
 
 >**Note**: The attribute to be redacted NEED to be a String. If the attribute is a set of attributes, the algorithm will ignore all the set. In the example code **redact.py**, the attribute **items** is in the list but it will not redact anything.
 
