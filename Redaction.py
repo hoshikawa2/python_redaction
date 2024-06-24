@@ -33,6 +33,8 @@ class Redaction():
         # flag_vezes = 0
         flag_dois_pontos = False
         flag_colchetes = False
+        flag_string = True
+        flag_descobre_tipo = False
         i = 0
         z = pattern
         str_acc = ""
@@ -45,7 +47,9 @@ class Redaction():
                 print("except")
             if (message[i] == ":" and not flag_aspas and flag_attribute):
                 flag_dois_pontos = True
-            if (flag_aspas and message[i] != "'" and message[i] != "\"" and flag_attribute and flag_dois_pontos):
+                flag_descobre_tipo = True
+            if ((flag_aspas and message[i] != "'" and message[i] != "\"" and flag_attribute and flag_dois_pontos)
+                    or (message[i] in "0123456789." and flag_attribute and flag_dois_pontos and not flag_string)):
                 str_acc = str_acc + message[i]
                 message = message[0:i] + "*" + message[i + 1:len(message) + i]
             if (message[i] == "{" and flag_dois_pontos and not flag_aspas):
@@ -53,25 +57,48 @@ class Redaction():
                 flag_dois_pontos = False
                 flag_aspas = False
                 flag_colchetes = False
+                flag_descobre_tipo = False
+                flag_string = True
             if ((message[i] == "}" or message[i] == "]") and not flag_aspas):
                 flag_attribute = False
                 flag_dois_pontos = False
                 flag_aspas = False
                 flag_colchetes = False
+                flag_descobre_tipo = False
+                flag_string = True
                 str_acc = ""
-            if (flag_dois_pontos and not flag_aspas and message[i] == "["):
-                flag_colchetes = True
-            if (message[i] == "," and not flag_aspas and not flag_colchetes):
+            if ((message[i] == "}" or message[i] == "]") and not flag_aspas and not flag_string):
                 flag_attribute = False
                 flag_dois_pontos = False
                 flag_aspas = False
                 flag_colchetes = False
+                flag_descobre_tipo = False
+                flag_string = True
+                str_acc = ""
+            if (flag_dois_pontos and not flag_aspas and message[i] == "["):
+                flag_colchetes = True
+            if (message[i] == "," and not flag_aspas and not flag_colchetes and not flag_string):
+                flag_attribute = False
+                flag_dois_pontos = False
+                flag_aspas = False
+                flag_colchetes = False
+                flag_descobre_tipo = False
+                flag_string = True
                 str_acc = ""
             if ((message[i] == "'" or message[i] == "\"")):
                 flag_aspas = not flag_aspas
-            if (flag_aspas == False and flag_attribute == True and flag_dois_pontos and len(str_acc) > 0 and not flag_colchetes):
+                if (flag_descobre_tipo):
+                    flag_string = True
+                    flag_descobre_tipo = False
+            if (message[i] in "01234567890." and flag_descobre_tipo):
+                flag_string = False
+                flag_descobre_tipo = False
+                str_acc = str_acc + message[i]
+                message = message[0:i] + "*" + message[i + 1:len(message) + i]
+            if (flag_aspas == False and flag_attribute == True and flag_dois_pontos and len(str_acc) > 0 and not flag_colchetes and flag_string):
                 flag_attribute = False
                 flag_dois_pontos = False
+                flag_descobre_tipo = False
                 str_acc = ""
             i = i + 1
         return message

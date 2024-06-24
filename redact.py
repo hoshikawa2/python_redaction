@@ -18,12 +18,14 @@ ATTRIBUTE_PATTERNS = [
     "original",
     "type",
     "solicitacaoPagador",
-    "expiracao", #Não funciona para atributos numéricos, apenas para String
+    "expiracao",
     "chave",
     "description",
     "items",
     "example",
-    "required"
+    "required",
+    "x-scope",
+    "maxLength"
 ]
 
 Messages = [
@@ -37,7 +39,7 @@ Messages = [
     "User's date of birth: 04/29/1990",
     "User's IP address: 192.168.1.1",
     "User's API key: a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6",
-    '{    "nome": "João Silva",    "cpf": "123.456.789-00",    "teste": "Teste Valor",    "valor": 200.00,    "original": "Original Valor",    "type": "Tipo Valor",    "solicitacaoPagador": "Solicitação Pagador",    "expiracao": "2021-12-31",    "chave": "Chave Valor",    "description": "Descrição Valor",    "items": ["Item1", "Item2"],    "example": "Exemplo Valor"}'
+    '{    "nome": "João Silva",    "cpf": "123.456.789-00",  "maxLength": [1.0, 2.0, 3.0],  "teste": "Teste Valor",    "valor": 200.00,    "original": "Original Valor",    "type": "Tipo Valor",    "solicitacaoPagador": "Solicitação Pagador",    "expiracao": "2021-12-31",    "chave": "Chave Valor",    "description": "Descrição Valor",    "items": ["Item1", "Item2"],    "example": "Exemplo Valor"}'
 ]
 
 redaction = Redaction.Redaction()

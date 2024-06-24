@@ -38,7 +38,7 @@ We can then, from a list of Strings (Logs for example), have a poorly formatted 
 
 This code has more logical complexity:
 
-![img.png](images/repl_value1.png)
+![img.png](images/repl_value3.png)
 
 It works with flags:
 
@@ -46,6 +46,8 @@ It works with flags:
 - **flag_attribute**: It marks that an attribute was found
 - **flag_dois_pontos**: It marks that the algorithm is prepared to find the content of an attribute (the content is after the :)
 - **flag_colchetes**: It marks that an attribute items values will be analyzed
+- **flag_descobre_tipo**: It marks for find the type of an attribute (String or Numeric)
+- **flag_string**: If True, the attribute will be a String; If False, it's a Numeric attribute
 
 >**Note**: The attribute to be redacted NEED to be a String. If the attribute is a set of attributes, the algorithm will ignore all the set. In the example code **redact.py**, the attribute **items** is in the list but it will not redact anything.
 
@@ -61,7 +63,7 @@ What the algorithm performs:
     
     : need to respect a JSON association
     
-    'value' is the value between '', yes the value needs to be a String 
+    'value' is the value between '' for a String, or a Numeric value (Integer or Double with a . and no '') 
     
 
 So you can use the class **Redaction.py** in you code, like this:
