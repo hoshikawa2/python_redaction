@@ -49,7 +49,7 @@ It works with flags:
 - **flag_descobre_tipo**: It marks for find the type of an attribute (String or Numeric)
 - **flag_string**: If True, the attribute will be a String; If False, it's a Numeric attribute
 
->**Note**: The attribute to be redacted NEED to be a String. If the attribute is a set of attributes, the algorithm will ignore all the set. In the example code **redact.py**, the attribute **items** is in the list but it will not redact anything.
+>**Note**: The attribute to be redacted could be a String, Numeric or Items (values between [ and ]). If the attribute is a set of attributes (between { and }), the algorithm will ignore all the set.
 
 What the algorithm performs:
 
