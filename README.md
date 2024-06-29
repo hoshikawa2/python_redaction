@@ -36,7 +36,7 @@ We can then, from a list of Strings (Logs for example), have a poorly formatted 
 
 ![img_2.png](images/img_2.png)
 
-This code has more logical complexity:
+This is the part of code has more logical complexity:
 
 ![img.png](images/repl_value3.png)
 
