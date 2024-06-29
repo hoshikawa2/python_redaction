@@ -49,7 +49,7 @@ It works with flags:
 - **flag_descobre_tipo**: It marks for find the type of an attribute (String or Numeric)
 - **flag_string**: If True, the attribute will be a String; If False, it's a Numeric attribute
 
->**Note**: The attribute to be redacted could be a String, Numeric or Items (values between [ and ]). If the attribute is a set of attributes (between { and }), the algorithm will ignore all the set.
+>**Note**: The attribute to be redacted could be a String, Numeric or Items (values between [ and ]). If the attribute is a set of attributes (between { and }), the algorithm will ignore all the set. So, in this case, you need to find the attribute name inside the set or, in other words, the attribute name between { and }.
 
 What the algorithm performs:
 
